@@ -1,25 +1,17 @@
-import { BrowserRouter,Route,Routes } from "react-router-dom"
-import Home from "./pages/Home"
-import Sidebar from './components/Sidebar';
-import SearchBar from './components/SearchBar';
+import BalanceDisplay from './components/BalanceDisplay';
+import Transactions from './components/Transactions';
+import Header from './components/Header';
 
-function App() {
-
+const Apps = () => {
   return (
-   <BrowserRouter>
-   <div className="flex min-h-screen">
-    <Sidebar />
-
-    <div className="flex-1 p-6">
-      <SearchBar />
-      <Routes>
-        <Route path="/" element={<Home/>}/>
-      </Routes>
+    <div >
+        <Header />
+        <div className='mt-15 flex justify-center min-h-screen w-full'>
+          <BalanceDisplay/>
+          <Transactions />
+        </div>
     </div>
-
-   </div>
-   </BrowserRouter>
   )
 }
 
-export default App
+export default Apps
