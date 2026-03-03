@@ -47,7 +47,7 @@ const Transactions = ({
         </select>
       )}
 
-      <ul className="flex flex-col gap-5">
+      <ul className="flex flex-col gap-5 max-h-96 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400">
         {filteredTask.map((item) => (
           <li
             className="border border-gray-300 rounded-md p-4 shadow-lg flex gap-3 w-full"

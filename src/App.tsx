@@ -9,9 +9,9 @@ const Apps = () => {
   return (
     <div >
         <Header />
-        <div className='mt-15 flex justify-center min-h-screen w-full'>
+        <div className='mt-15 flex justify-center w-full'>
           <div className='flex-1 flex flex-col items-center gap-10'>
-            <BalanceDisplay/>
+            <BalanceDisplay {...transaction}/>
             <AddTransaction {...transaction}/>
           </div>
           <div className='flex-1'>

@@ -57,6 +57,20 @@ const useTransaction = () => {
           : item.type === "expense" && item.cat === expenseCat;
   });
 
+  const totalIncome = task.reduce((sum,item)=>{
+    return item.type === "income"
+      ? sum + Number(item.amount)
+      : sum
+  },0)
+
+  const totalExpense = task.reduce((sum,item)=>{
+    return item.type === "expense"
+      ? sum + Number(item.amount)
+      : sum
+  },0)
+
+  const balance = totalIncome - totalExpense
+
   return {
     task,
     amount,
@@ -74,6 +88,9 @@ const useTransaction = () => {
     expenseCat,
     setExpenseCat,
     filteredTask,
+    totalIncome,
+    totalExpense,
+    balance
   };
 };
 
