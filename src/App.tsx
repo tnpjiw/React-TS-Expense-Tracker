@@ -15,7 +15,7 @@ const Apps = () => {
             <AddTransaction {...transaction}/>
           </div>
           <div className='flex-1'>
-            <Transactions task={transaction.task}/>
+            <Transactions {...transaction}/>
           </div>
         </div>
     </div>

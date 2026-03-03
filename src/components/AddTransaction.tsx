@@ -23,36 +23,36 @@ const AddTransaction = ({amount,setAmount,date,setDate,type,setType,cat,setCat,s
         <div className="flex gap-2 w-full">
           <input
             type="date"
-            value={date ? date.toISOString().split("T")[0] : ""}
+            value={date}
             className="border border-gray-400 rounded  outline-0 flex-1"
-            onChange={(e)=>setDate(new Date(e.target.value))}
+            onChange={(e)=>setDate(e.target.value)}
           />
 
            <select
-            name=""
-            id=""
+            value={type}
             className="border border-gray-400 rounded outline-0 flex-1"
             onChange={(e)=>setType(e.target.value as 'income' | 'expense')}
           >
+            <option value="">Select</option>
             <option value="income">Income</option>
             <option value="expense">Expense</option>
           </select>
 
           <select
-            name=""
-            id=""
+            value={cat}
             className="border border-gray-400 rounded outline-0 flex-1"
-            onChange={(e)=>setCat(e.target.value as 'products' | 'entertainment' | 'bills' | 'other')}
+            onChange={(e)=>setCat(e.target.value as 'Products' | 'Entertainment' | 'Bills' | 'Salary' | 'Other')}
           >
             <option value="">Select</option>
-            <option value="products">Products</option>
-            <option value="entertainment">Entertainment</option>
-            <option value="bills">Bills</option>
-            <option value="other">Other</option>
+             <option value="Salary">Salary</option>
+            <option value="Products">Products</option>
+            <option value="Entertainment">Entertainment</option>
+            <option value="Bills">Bills</option>
+            <option value="Other">Other</option>
           </select>
 
         </div>
-        <button type="submit" className="w-full bg-blue-400 hover:bg-blue-500 text-white rounded p-2">Add</button>
+        <button type="submit" className="w-full bg-blue-400 hover:bg-blue-500 hover:transition-all hover:duration-300 hover:ease-in-out text-white rounded p-2">Add</button>
       </form>
     </div>
   );

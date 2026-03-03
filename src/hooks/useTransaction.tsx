@@ -1,14 +1,21 @@
-import { useReducer, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import type { Tran } from "../types/Transaction";
 
+
 const useTransaction = () => {
-    const [task,setTask] = useState<Tran[]>([
-        {id:1,amount:"100",date:new Date("2026-03-02"),type:"expense",cat:"bills"}
-    ])
+    const [task,setTask] = useState<Tran[]>(()=>{
+        const savedTasks = localStorage.getItem("trantask")
+        return savedTasks ? JSON.parse(savedTasks) : []
+    })
+
+    useEffect(()=>{
+        localStorage.setItem("trantask",JSON.stringify(task))
+    },[task])
+
     const [amount,setAmount] = useState<string>("")
-    const [cat,setCat] = useState<'products' | 'entertainment' |'bills' | 'other'>("products")
-    const [type,setType] = useState<'income' | 'expense'>('income')
-    const [date,setDate] = useState<Date>()
+    const [cat,setCat] = useState<'Products' | 'Entertainment' |'Bills' | 'Salary' | 'Other' | ''>("")
+    const [type,setType] = useState<'income' | 'expense' | ''>('')
+    const [date,setDate] = useState<string>("")
 
     const submitForm = (e:FormEvent)=>{
         e.preventDefault()
@@ -22,14 +29,17 @@ const useTransaction = () => {
         }
         setTask(prev => [...prev,newTran])
         setAmount("")
-        setCat("products")
-        setType("income")
-        setDate(undefined)
+        setCat("")
+        setType("")
+        setDate("")
     }
 
-    
+    const deleteTask = (id:number)=>{
+        setTask(prev => prev.filter((task)=>task.id !== id))
+    }
 
-  return {task,amount,setAmount,cat,setCat,type,setType,date,setDate,submitForm}
+
+  return {task,amount,setAmount,cat,setCat,type,setType,date,setDate,submitForm,deleteTask}
 }
 
 export default useTransaction
