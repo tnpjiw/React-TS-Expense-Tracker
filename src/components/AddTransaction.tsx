@@ -1,10 +1,16 @@
 import type { UseTransactionReturn } from "../types/Transaction";
 
-
-
-const AddTransaction = ({amount,setAmount,date,setDate,type,setType,cat,setCat,submitForm}:UseTransactionReturn) => {
-  
-  
+const AddTransaction = ({
+  amount,
+  setAmount,
+  date,
+  setDate,
+  type,
+  setType,
+  cat,
+  setCat,
+  submitForm,
+}: UseTransactionReturn) => {
   return (
     <div className="flex flex-col items-center w-md">
       <h1 className="self-start">Transaction</h1>
@@ -17,7 +23,7 @@ const AddTransaction = ({amount,setAmount,date,setDate,type,setType,cat,setCat,s
           type="number"
           value={amount}
           className="border border-gray-400 rounded outline-0 px-2"
-          onChange={(e)=>setAmount(e.target.value)}
+          onChange={(e) => setAmount(e.target.value)}
         />
 
         <div className="flex gap-2 w-full">
@@ -25,13 +31,13 @@ const AddTransaction = ({amount,setAmount,date,setDate,type,setType,cat,setCat,s
             type="date"
             value={date}
             className="border border-gray-400 rounded  outline-0 flex-1"
-            onChange={(e)=>setDate(e.target.value)}
+            onChange={(e) => setDate(e.target.value)}
           />
 
-           <select
+          <select
             value={type}
             className="border border-gray-400 rounded outline-0 flex-1"
-            onChange={(e)=>setType(e.target.value as 'income' | 'expense')}
+            onChange={(e) => setType(e.target.value as "income" | "expense")}
           >
             <option value="">Select</option>
             <option value="income">Income</option>
@@ -41,18 +47,41 @@ const AddTransaction = ({amount,setAmount,date,setDate,type,setType,cat,setCat,s
           <select
             value={cat}
             className="border border-gray-400 rounded outline-0 flex-1"
-            onChange={(e)=>setCat(e.target.value as 'Products' | 'Entertainment' | 'Bills' | 'Salary' | 'Other')}
+            onChange={(e) =>
+              setCat(
+                e.target.value as
+                  | "Products"
+                  | "Entertainment"
+                  | "Bills"
+                  | "Salary"
+                  | "Other",
+              )
+            }
           >
             <option value="">Select</option>
-             <option value="Salary">Salary</option>
-            <option value="Products">Products</option>
-            <option value="Entertainment">Entertainment</option>
-            <option value="Bills">Bills</option>
-            <option value="Other">Other</option>
-          </select>
+            {type === "income" && (
+              <>
+                <option value="Salary">Salary</option>
+                <option value="Other">Other</option>
+              </>
+            )}
 
+            {type === "expense" && (
+              <>
+                <option value="Products">Products</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="Bills">Bills</option>
+                <option value="Other">Other</option>
+              </>
+            )}
+          </select>
         </div>
-        <button type="submit" className="w-full bg-blue-400 hover:bg-blue-500 hover:transition-all hover:duration-300 hover:ease-in-out text-white rounded p-2">Add</button>
+        <button
+          type="submit"
+          className="w-full bg-blue-400 hover:bg-blue-500 hover:transition-all hover:duration-300 hover:ease-in-out text-white rounded p-2"
+        >
+          Add
+        </button>
       </form>
     </div>
   );
